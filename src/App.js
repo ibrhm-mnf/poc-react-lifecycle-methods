@@ -6,28 +6,21 @@ class App extends React.Component {
     number: 0
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({ number: 0 })
-    }, 2000);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.number !== nextState.number)
-      return true
-    else
-      return false
-  }
-
   onChangeScore = () => {
     this.setState({ number: 1 })
+  }
+
+  changeScoreFromchild = () => {
+    this.setState({ number: 2 })
   }
 
   render() {
     return (
       <div>
-        <button onClick={() => this.onChangeScore()}>add  new score</button>
-        <MyChild number={this.state.number} />
+        <button onClick={() => this.onChangeScore()}>add new score</button>
+        <MyChild
+          number={this.state.number}
+          changeScoreFromchild={this.changeScoreFromchild} />
       </div>
     );
   }
