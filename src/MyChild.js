@@ -4,13 +4,13 @@ export default class MyChild extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "nived"
+      name: "child"
     };
-    console.log("************ this is child contructor");
+    console.log("************ this is child contructor", props);
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log("************ this is child getDerivedStateFromProps");
+    console.log("************ this is child getDerivedStateFromProps", props, state);
     return null;
   }
 
@@ -19,21 +19,21 @@ export default class MyChild extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("************ this is child shouldComponentUpdate");
+    console.log("************ this is child shouldComponentUpdate", nextProps, nextState);
     return true;
   }
 
   getSnapshotBeforeUpdate = (prevProps, prevState) => {
-    console.log("************ this is child getSnapshotBeforeUpdate");
+    console.log("************ this is child getSnapshotBeforeUpdate", prevProps, prevState);
     return null;
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("************ this is child componentDidUpdate");
+    console.log("************ this is child componentDidUpdate", prevProps, prevState);
   }
 
   render() {
-    console.log("************ this is child render");
+    console.log("************ this is child render", this.props, this.state);
     return (
       <div>
         <h1>{this.props.name}</h1>
