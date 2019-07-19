@@ -1,53 +1,33 @@
 import React from "react";
-import MyChild from "./MyChild";
+import MyChild from "./components/MyChild";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "nived"
-    };
-    console.log("this is contructor");
-  }
-
-  static getDerivedStateFromProps() {
-    console.log("this is getDerivedStateFromProps");
-    return null;
+  state = {
+    number: 0
   }
 
   componentDidMount() {
-    console.log("this is componentDidMount");
+    setInterval(() => {
+      this.setState({ number: 0 })
+    }, 2000);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("this is shouldComponentUpdate");
-    return true;
+    if (this.state.number !== nextState.number)
+      return true
+    else
+      return false
   }
 
-  getSnapshotBeforeUpdate = (prevProps, prevState) => {
-    console.log("this is getSnapshotBeforeUpdate");
-    return null;
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log("this is componentDidUpdate");
+  onChangeScore = () => {
+    this.setState({ number: 1 })
   }
-
-  onClickButton() {
-    this.setState({ name: "hashir" });
-  }
-
-  renderChild = () => {
-    return <h2>Child</h2>;
-  };
 
   render() {
     return (
       <div>
-        {this.state.name}
-        <button onClick={() => this.onClickButton()}>hit me</button>
-        <h1>Parent</h1>
-        <MyChild />
+        <button onClick={() => this.onChangeScore()}>add  new score</button>
+        <MyChild number={this.state.number} />
       </div>
     );
   }
